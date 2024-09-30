@@ -20,8 +20,13 @@ def main():
     col1, col2 = st.columns([0.14, 0.86], gap="small")
     col1.write("`Created by:`")
     linkedin_url = "https://www.linkedin.com/in/yashkhaitan/"
+    linkedin_url_1 = "https://www.linkedin.com/in/rizr09/"
     col2.markdown(
         f'<a href="{linkedin_url}" target="_blank" style="text-decoration: none; color: inherit;"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="15" height="15" style="vertical-align: middle; margin-right: 10px;">`Yash Khaitan`</a>',
+        unsafe_allow_html=True,
+    )
+    col2.markdown(
+        f'<a href="{linkedin_url_1}" target="_blank" style="text-decoration: none; color: inherit;"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="15" height="15" style="vertical-align: middle; margin-right: 10px;">`Rizky Ramadhan Sudjarmono`</a>',
         unsafe_allow_html=True,
     )
     
@@ -33,7 +38,7 @@ def main():
     # Using sidebar for inputs
 
     if "stocks" not in st.session_state:
-        st.session_state.stocks_list = ["TCS, CAMS, ITC, INFY"]  # Initialize empty list
+        st.session_state.stocks_list = ["KLBF, INDF, BBCA, BBRI, TLKM, UNTR, PTBA, ANTM, AKRA, ICBP, UNVR"]  # Initialize empty list
 
     default_tickers_str = ", ".join(st.session_state.stocks_list)
 
@@ -73,7 +78,7 @@ def main():
         max_value=100.00,
         step=0.001,
         format="%0.3f",
-        value=6.880,
+        value=6.000,
         help = "10 Year Bond Yield"
     )
     calc = cont1.button("Calculate")

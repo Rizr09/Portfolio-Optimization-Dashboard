@@ -13,7 +13,7 @@ class PortfolioOptimizer:
 
     def __init__(
         self, stocks, start, end, optimization_criterion, riskFreeRate=0.07024):
-        self.stocks = [stock + ".NS" for stock in stocks]  
+        self.stocks = [stock + ".JK" for stock in stocks]  
         self.start = start
         self.end = end
         self.optimization_criterion = optimization_criterion
@@ -56,7 +56,7 @@ class PortfolioOptimizer:
 
     def benchmarkReturns(self):
         try:
-            benchmark_data = yf.download("^NSEI", self.start, self.end)
+            benchmark_data = yf.download("^JKLQ45", self.start, self.end)
         except:
             raise ValueError("Unable to download data, try again later!")
         benchmark_returns = benchmark_data["Close"].pct_change().dropna()
@@ -353,7 +353,7 @@ class PortfolioOptimizer:
         matrix = returns.corr().round(decimals=2)
         matrix[""] = matrix.index
         matrix = matrix[[""] + [col for col in matrix.columns if col != ""]]
-        matrix.columns = [stock.replace(".NS", "") for stock in matrix.columns]
-        matrix[""] = [stock.replace(".NS", "") for stock in matrix[""]]
+        matrix.columns = [stock.replace(".JK", "") for stock in matrix.columns]
+        matrix[""] = [stock.replace(".JK", "") for stock in matrix[""]]
 
         return df, matrix

@@ -168,7 +168,7 @@ class MetricsCalculator(PortfolioOptimizer):
         returns_df = pd.DataFrame(
             {
                 "Date": cumulative_returns_p.index,
-                "Nifty Cumulative Return (%)": cumulative_returns_b.values,
+                "LQ45 Cumulative Return (%)": cumulative_returns_b.values,
                 "Portfolio Cumulative Return (%)": cumulative_returns_p.values,
             }
         )
@@ -178,7 +178,7 @@ class MetricsCalculator(PortfolioOptimizer):
         fig = px.line(
             returns_df,
             x="Date",
-            y=["Portfolio Cumulative Return (%)", "Nifty Cumulative Return (%)"],
+            y=["Portfolio Cumulative Return (%)", "LQ45 Cumulative Return (%)"],
             labels={"value": "Cumulative Return (%)", "variable": "Legend"},
         )
 
@@ -191,7 +191,7 @@ class MetricsCalculator(PortfolioOptimizer):
         )
 
         st.markdown(f'**Portfolio Returns**: {round(cumulative_returns_p.values[-1], 2)}% ')
-        st.markdown(f'**NIFTY Returns**: {round(cumulative_returns_b.values[-1], 2)}% ')
+        st.markdown(f'**LQ45 Returns**: {round(cumulative_returns_b.values[-1], 2)}% ')
         st.plotly_chart(fig)
 
     def metricDf(self):
