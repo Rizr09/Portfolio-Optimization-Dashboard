@@ -44,6 +44,25 @@ def main():
 
     cont1 = st.container(border=True)
     cont1.markdown("### Input Parameters")
+        # File uploader for tickers
+    uploaded_file = cont1.file_uploader("Upload Excel file", type=["xlsx"])
+    
+    if uploaded_file is not None:
+        # Read the uploaded Excel file
+        df = pd.read_excel(uploaded_file)
+        # Assuming the column name is 'Tickers'
+        if 'Tickers' in df.columns:
+            st.session_state.stocks_list = df['Tickers'].dropna().tolist()
+        else:
+            st.error("Excel file must contain a column named 'Tickers'.")
+            return
+    else:
+        # If no file is uploaded, provide a default
+        st.session_state.stocks_list = ["KLBF, INDF, BBCA, BBRI, TLKM, UNTR, PTBA, ANTM, AKRA, ICBP, UNVR"]
+
+    default_tickers_str = ", ".join(st.session_state.stocks_list)
+
+    # The rest of your input parameters remain unchanged
     stocks = cont1.text_input(
         "Enter Tickers (separated by commas)", value=default_tickers_str
     )
@@ -98,7 +117,7 @@ def main():
                     riskFreeRate,
                 )
                 optimizer.optimized_allocation.index = [
-                    stock.replace(".NS", "")
+                    stock.replace(".JK", "")
                     for stock in optimizer.optimized_allocation.index
                 ]
                 ret, std = optimizer.basicMetrics()
