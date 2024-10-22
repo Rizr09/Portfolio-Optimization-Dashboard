@@ -63,6 +63,7 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 ## Connect with Me
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect%20with%20Me-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/yashkhaitan/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect%20with%20Me-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/RIZR09/)
 
 
 
