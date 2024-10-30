@@ -79,7 +79,7 @@ def main():
         min_value=start_date + dt.timedelta(days=1),
         value=dt.date.today(),
     )
-    col1, col2 = cont1.columns(2)
+    col1, col2, col3 = cont1.columns(3)
     optimization_criterion = col1.selectbox(
         "Optimization Objective",
         options=[
@@ -98,7 +98,12 @@ def main():
         step=0.001,
         format="%0.3f",
         value=6.000,
-        help = "10 Year Bond Yield"
+        help="10 Year Bond Yield",
+    )
+    benchmark = col3.selectbox(
+        "Benchmark",
+        options=["IHSG", "LQ45", "IDX30", "JII"],
+        index=1  # Default to LQ45
     )
     calc = cont1.button("Calculate")
     riskFreeRate = riskFreeRate_d / 100
@@ -115,6 +120,7 @@ def main():
                     end_date,
                     optimization_criterion,
                     riskFreeRate,
+                    benchmark=benchmark
                 )
                 optimizer.optimized_allocation.index = [
                     stock.replace(".JK", "")
@@ -139,6 +145,7 @@ def main():
                     end_date,
                     optimization_criterion,
                     riskFreeRate,
+                    benchmark=benchmark
                 )
                 
                 metric_df = metrics.metricDf()
@@ -222,6 +229,7 @@ def main():
             with tab4:
                 st.markdown("#### Cumulative Portfolio Returns")
                 metrics.portfolioReturnsGraph()
+                st.markdown(f"*Benchmark: {benchmark}*")
 
             with tab5:
                 st.markdown("#### VaR and CVaR")

@@ -12,12 +12,13 @@ from scipy.stats import norm
 class PortfolioOptimizer:
 
     def __init__(
-        self, stocks, start, end, optimization_criterion, riskFreeRate=0.07024):
+        self, stocks, start, end, optimization_criterion, riskFreeRate=0.07024, benchmark="LQ45"):
         self.stocks = [stock + ".JK" for stock in stocks]  
         self.start = start
         self.end = end
         self.optimization_criterion = optimization_criterion
         self.riskFreeRate = riskFreeRate
+        self.benchmark_name = benchmark
         self.meanReturns, self.covMatrix = self.getData()
         self.benchmark = self.benchmarkReturns()
         (
@@ -27,7 +28,7 @@ class PortfolioOptimizer:
             self.efficientList,
             self.targetReturns,
         ) = self.calculatedResults()
-
+    
     def basicMetrics(self):
         if not all(s.isupper() for s in self.stocks):
             raise ValueError("Enter ticker names in Capital Letters!")
@@ -55,10 +56,17 @@ class PortfolioOptimizer:
         return portfolioDailyReturns
 
     def benchmarkReturns(self):
+        benchmark_tickers = {
+            "IHSG": "^JKSE",
+            "LQ45": "^JKLQ45",
+            "IDX30": "IDX30.JK",
+            "JII": "^JKII",
+        }
+        benchmark_symbol = benchmark_tickers.get(self.benchmark_name, "^JKLQ45")  # Default to LQ45
         try:
-            benchmark_data = yf.download("^JKLQ45", self.start, self.end)
+            benchmark_data = yf.download(benchmark_symbol, self.start, self.end)
         except:
-            raise ValueError("Unable to download data, try again later!")
+            raise ValueError("Unable to download benchmark data, try again later!")
         benchmark_returns = benchmark_data["Close"].pct_change().dropna()
         return benchmark_returns
 

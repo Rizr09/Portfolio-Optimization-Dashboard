@@ -9,9 +9,9 @@ import plotly.express as px
 
 class MetricsCalculator(PortfolioOptimizer):
     def __init__(
-        self, stocks, start, end, optimization_criterion, riskFreeRate=0.07024
+        self, stocks, start, end, optimization_criterion, riskFreeRate=0.07024, benchmark="LQ45"
     ):
-        super().__init__(stocks, start, end, optimization_criterion, riskFreeRate)
+        super().__init__(stocks, start, end, optimization_criterion, riskFreeRate, benchmark)
         self.portfolioDaily = self.portfolioReturnsDaily()
         self.annual_return = self.MMeanReturn("annual") / 100
 
@@ -168,7 +168,7 @@ class MetricsCalculator(PortfolioOptimizer):
         returns_df = pd.DataFrame(
             {
                 "Date": cumulative_returns_p.index,
-                "LQ45 Cumulative Return (%)": cumulative_returns_b.values,
+                f"{self.benchmark_name} Cumulative Return (%)": cumulative_returns_b.values,
                 "Portfolio Cumulative Return (%)": cumulative_returns_p.values,
             }
         )
@@ -178,7 +178,10 @@ class MetricsCalculator(PortfolioOptimizer):
         fig = px.line(
             returns_df,
             x="Date",
-            y=["Portfolio Cumulative Return (%)", "LQ45 Cumulative Return (%)"],
+            y=[
+                "Portfolio Cumulative Return (%)",
+                f"{self.benchmark_name} Cumulative Return (%)",
+            ],
             labels={"value": "Cumulative Return (%)", "variable": "Legend"},
         )
 
@@ -191,7 +194,7 @@ class MetricsCalculator(PortfolioOptimizer):
         )
 
         st.markdown(f'**Portfolio Returns**: {round(cumulative_returns_p.values[-1], 2)}% ')
-        st.markdown(f'**LQ45 Returns**: {round(cumulative_returns_b.values[-1], 2)}% ')
+        st.markdown(f'**{self.benchmark_name} Returns**: {round(cumulative_returns_b.values[-1], 2)}% ')
         st.plotly_chart(fig)
 
     def metricDf(self):
