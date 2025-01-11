@@ -9,7 +9,7 @@ import plotly.express as px
 
 class MetricsCalculator(PortfolioOptimizer):
     def __init__(
-        self, stocks, start, end, optimization_criterion, riskFreeRate=0.07024, benchmark="LQ45"
+        self, stocks, start, end, optimization_criterion, riskFreeRate=0.06098, benchmark="LQ45"
     ):
         super().__init__(stocks, start, end, optimization_criterion, riskFreeRate, benchmark)
         self.portfolioDaily = self.portfolioReturnsDaily()

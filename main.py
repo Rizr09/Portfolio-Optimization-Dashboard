@@ -14,9 +14,9 @@ from risk import RiskMetrics
 def main():
     im = Image.open("EfficientFrontier.png")
 
-    st.set_page_config(page_title="Portfolio Optimization Dashboard", page_icon=im)
+    st.set_page_config(page_title="Indonesia Portfolio Optimization Dashboard", page_icon=im)
 
-    st.markdown("## Portfolio Optimization Dashboard")
+    st.markdown("## Indonesia Portfolio Optimization Dashboard")
     col1, col2 = st.columns([0.14, 0.86], gap="small")
     col1.write("`Created by:`")
     linkedin_url = "https://www.linkedin.com/in/yashkhaitan/"
@@ -45,7 +45,8 @@ def main():
     cont1 = st.container(border=True)
     cont1.markdown("### Input Parameters")
         # File uploader for tickers
-    uploaded_file = cont1.file_uploader("Upload Excel file", type=["xlsx"])
+    uploaded_file = cont1.file_uploader("Please upload an Excel file in the format similar to the one provided here:", type=["xlsx"])
+    cont1.markdown('<small>[View Sample File](https://1drv.ms/x/c/ba8e1ccd17ac4eca/EQw0X3MRRChBpjTYDTRT4NoB4hhEKzSGzuWwa-sS9rvyAA?e=QgqCvc)</small>', unsafe_allow_html=True)
     
     if uploaded_file is not None:
         # Read the uploaded Excel file
@@ -64,7 +65,7 @@ def main():
 
     # The rest of your input parameters remain unchanged
     stocks = cont1.text_input(
-        "Enter Tickers (separated by commas)", value=default_tickers_str
+        "Or Enter Tickers (separated by commas)", value=default_tickers_str
     )
     start, end = cont1.columns(2)
     start_date = start.date_input(
@@ -102,7 +103,7 @@ def main():
     )
     benchmark = col3.selectbox(
         "Benchmark",
-        options=["IHSG", "LQ45", "IDX30", "JII"],
+        options=["IHSG", "LQ45", "JII"],
         index=1  # Default to LQ45
     )
     calc = cont1.button("Calculate")

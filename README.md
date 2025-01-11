@@ -49,7 +49,7 @@ The Efficient Frontier is visualized as a curve representing the optimal set of 
 
 ## Usage
 
-1. Open the application in your web browser: https://portfolio-optimization.streamlit.app/
+1. Open the application in your web browser: https://portfolio-optimization-id.streamlit.app/
 2. Enter your tickers, start and end dates, and risk-free rate in the input fields.
 3. Select an optimization strategy from the dropdown menu.
 4. Click the "Calculate" button to generate your optimized portfolio.

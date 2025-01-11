@@ -88,5 +88,4 @@ def optimization_strategies_info():
     st.markdown("**Available Benchmarks:**")
     st.markdown("The **Indonesia Composite Index** (IHSG) represents all stocks listed on the Indonesia Stock Exchange (IDX). It provides a comprehensive measure of the overall performance of the Indonesian stock market.")
     st.markdown("The **LQ45 Index** comprises 45 stocks with high liquidity and large market capitalization. These companies are selected based on specific criteria, including trading frequency and transaction value, making the index a benchmark for liquid and well-established stocks in Indonesia.")
-    st.markdown("The **IDX30 Index** includes 30 stocks that have the highest liquidity and largest market capitalization on the IDX. It serves as a benchmark for the performance of leading companies and is designed to reflect the movement of major stocks in the Indonesian market.")
     st.markdown("The **Jakarta Islamic Index** consists of 30 sharia-compliant stocks chosen based on Islamic principles. This index tracks the performance of companies that adhere to Sharia law, providing a benchmark for investors interested in Islamic finance.")

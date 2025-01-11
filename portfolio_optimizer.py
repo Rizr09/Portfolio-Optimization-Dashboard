@@ -59,7 +59,6 @@ class PortfolioOptimizer:
         benchmark_tickers = {
             "IHSG": "^JKSE",
             "LQ45": "^JKLQ45",
-            "IDX30": "IDX30.JK",
             "JII": "^JKII",
         }
         benchmark_symbol = benchmark_tickers.get(self.benchmark_name, "^JKLQ45")  # Default to LQ45
